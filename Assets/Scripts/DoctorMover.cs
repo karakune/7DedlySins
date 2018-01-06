@@ -5,12 +5,21 @@ using UnityEngine;
 public class DoctorMover : MonoBehaviour {
 
 	public Camera cam;
+	public float playerNumber = 1;
 
-	//Horizontal1 pour Doctor et Horizontal2 pour jester
-	public string x = "LeftStickHorizontal1";
+	//Input Names
+	//LeftStick to move
+	private string xMove;
+	private string zMove;
+	//RightStick to control camera
+	private string xRotate;
+	private string yRotate;
+	//Buttons
+	private string A;
+	private string B;
+	private string X;
+	private string Y;
 
-	//Vertical1 pour Doctor et Vertical2 pour Jester
-	public string z = "LeftStickVertical1";
 
 	//Movement speed
 	public float speed;
@@ -32,24 +41,38 @@ public class DoctorMover : MonoBehaviour {
 		//Init des rotation a 0
 		xRotation = 0;
 		yRotation = 0;
+
+		//Initi Input
+		xMove = "LeftStickHorizontal" + playerNumber ;
+		zMove = "LeftStickVertical"+ playerNumber;
+		xRotate = "RightStickHorizontal"+ playerNumber;
+		yRotate = "RightStickVertical"+ playerNumber;
+		A = "AButton"+ playerNumber;
+		B = "BButton"+ playerNumber;
+		X = "XButton"+ playerNumber;
+		Y = "YButton"+ playerNumber;
+
+		//Init jump;
 		jump = true;
+
+		//Get rigidBody
 		rb = GetComponent<Rigidbody> ();
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
 		//Move
-		transform.Translate (Input.GetAxis(x)*speed,0,Input.GetAxis(z)*speed);
+		transform.Translate (Input.GetAxis(xMove)*speed,0,Input.GetAxis(zMove)*speed);
 		//Incrementer/Decrementer la rotation 
-		xRotation += Input.GetAxis ("RightStickHorizontal1");
-		yRotation -= Input.GetAxis ("RightStickVertical1");
+		xRotation += Input.GetAxis (xRotate);
+		yRotation -= Input.GetAxis (yRotate);
 		//Rotate Body
 		transform.eulerAngles = new Vector3 (0, xRotation, 0);
 		//Rotate Camera
 		cam.transform.eulerAngles = new Vector3 (yRotation,xRotation , 0);
 
 		//Jump with A button
-		if (Input.GetButtonDown ("AButton1") && jump) 
+		if (Input.GetButtonDown (A) && jump) 
 		{
 			rb.velocity = Vector3.up * jumpVelocity;
 		}
@@ -58,14 +81,14 @@ public class DoctorMover : MonoBehaviour {
 
 	//Repermettre le joueur de sauter quand il touche le sol
 	void OnCollisionEnter(Collision other){
-		if (other.gameObject.tag == "ground" && jump == false) {
+		if (other.gameObject.tag == "Ground" && jump == false) {
 			jump = true;
 		}
 	}
 
 	//Ne plus permettre le joueur de sauter quand il est dans les airs
 	void OnCollisionExit(Collision other){
-		if (other.gameObject.tag == "ground" && jump == true) {
+		if (other.gameObject.tag == "Ground" && jump == true) {
 			jump = false;
 		}
 	}
