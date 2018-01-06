@@ -11,6 +11,7 @@ public abstract class MovementVerticalAnimation: MonoBehaviour {
     public float positionLow;
     public float positionHigh;
     public float incrementMovement;
+    public bool isInMotion = false;
 
     protected void ChooseDirection()
     {
@@ -30,10 +31,12 @@ public abstract class MovementVerticalAnimation: MonoBehaviour {
         Vector3 position = gameObject.transform.position;
         if (position.y > positionLow)
         {
+            isInMotion = true;
             gameObject.transform.position = new Vector3(position.x, position.y -= incrementMovement, position.z);
         }
         else
         {
+            isInMotion = false;
             CancelInvoke();
         }
     }
@@ -43,10 +46,12 @@ public abstract class MovementVerticalAnimation: MonoBehaviour {
         Vector3 position = gameObject.transform.position;
         if (position.y < positionHigh)
         {
+            isInMotion = true;
             gameObject.transform.position = new Vector3(position.x, position.y += incrementMovement, position.z);
         }
         else
         {
+            isInMotion = false;
             CancelInvoke();
         }
     }

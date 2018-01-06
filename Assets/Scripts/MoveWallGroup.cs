@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/**
- * Classe gérant quand la descente ou la montée d'un mur se produit
- */
-public class MoveWallGroup : MovementVerticalAnimation
+public class MoveWallGroup : MovementVerticalAnimation, IPossessable
 {
 
     public GameObject wallPair;
@@ -48,5 +45,24 @@ public class MoveWallGroup : MovementVerticalAnimation
             if(wallPair != null)
                 wallPair.GetComponent<MoveWallGroup>().triggerOther = true;
        }
+    }
+
+    public void Possess()
+    {
+        if (isInMotion == false) {
+            this.triggerMove = !this.triggerMove;
+        }
+    }
+
+    public void Glow(Color color)
+    {
+        Color colorWithOpacity = new Color(color.r, color.g, color.b, 0.5f);
+        GameObject glowObject = gameObject.transform.Find("Glow").gameObject;
+        glowObject.GetComponent<Renderer>().material.color = colorWithOpacity;
+        glowObject.SetActive(true);
+    }
+
+    public void UnGlow() {
+        gameObject.transform.Find("Glow").gameObject.SetActive(false);
     }
 }

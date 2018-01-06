@@ -4,24 +4,63 @@ using UnityEngine;
 
 public class JesterMover : MonoBehaviour {
 
-	//Horizontal1 pour Doctor et Horizontal2 pour jester
-	public string x = "LeftStickHorizontal2";
+	public Camera cam;
+	public string playerNumber = "2";
 
-	//Vertical1 pour Doctor et Vertical2 pour Jester
-	public string z = "LeftStickVertical2";
+
+	//Input Names
+	//LeftStick to move
+	private string xMove;
+	private string zMove;
+	//RightStick to control camera
+	private string xRotate;
+	//Buttons
+	protected string A;
+	protected string B;
+	protected string X;
+	protected string Y;
 
 	//Movement speed
 	public float speed;
+	//Define if the player can move or not
+	public bool canMove;
+
+	//angle de la camera
+	public float cameraAngle = 60;
+
+	//Rotation horizontale
+	private float xRotation;
 
 	// Use this for initialization
-	void Start () {
-		
+	protected virtual void Start () {
+		//Init rotation
+		xRotation = 0;
+		//Initi Input
+		xMove = "LeftStickHorizontal" + playerNumber ;
+		zMove = "LeftStickVertical"+ playerNumber;
+		xRotate = "RightStickHorizontal"+ playerNumber;
+		A = "AButton"+ playerNumber;
+		B = "BButton"+ playerNumber;
+		X = "XButton"+ playerNumber;
+		Y = "YButton"+ playerNumber;
+		//The player can move
+		canMove = true;
+
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
-		//Move
-		transform.Translate (Input.GetAxis(x)*speed,0,Input.GetAxis(z)*speed);
+	protected virtual void FixedUpdate () {
+		if (canMove) {
+			//Move
+			transform.Translate (Input.GetAxis(xMove)*speed,0,Input.GetAxis(zMove)*speed);
+
+			//Incrementer/Decrementer la rotation 
+			xRotation += Input.GetAxis (xRotate);
+			//Rotate Body
+			transform.eulerAngles = new Vector3 (0, xRotation, 0);
+			//Rotate Camera
+			cam.transform.eulerAngles = new Vector3 (cameraAngle,xRotation ,0);
+		}
 		
 	}
 }
