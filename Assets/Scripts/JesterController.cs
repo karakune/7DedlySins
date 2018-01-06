@@ -23,6 +23,10 @@ public class JesterController : JesterMover{
 	private float timePassed;
 	//True => the jester can use his stun skill. After that, the skill is deactivated for the cooldown duration (stunCd)
 	public bool canStun;
+	
+	public bool canPossess = false;
+	public List<Collider> possessables;
+	public Collider selectedPossessable;
 
 
 	protected override void Start () {
@@ -32,7 +36,7 @@ public class JesterController : JesterMover{
 		timePassed = 0;
 		//At start jester can use his stun skill
 		canStun = true;
-		
+		possessables = new List<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +45,42 @@ public class JesterController : JesterMover{
 
 		if (health == 0) {
 			Die ();
+		}
+
+		//management of possessable items
+		if (possessables.Count > 0) {
+			canPossess = true;
+		} else {
+			canPossess = false;
+		}
+
+		foreach(Collider possessable in possessables) {
+			possessable.gameObject.GetComponent<MoveWallGroup>().Glow(Color.blue);
+		}
+
+		if (selectedPossessable != null) {
+			selectedPossessable.gameObject.GetComponent<MoveWallGroup>().Glow(Color.yellow);
+		}
+
+		if (Input.GetButtonDown("XButton2")) {
+			if (selectedPossessable != null) {
+				selectedPossessable.gameObject.GetComponent<MoveWallGroup>().Possess();
+			}
+		}
+
+		if (Input.GetButtonDown("LB2")) {
+			//cycle forwards through possessables
+			UpdateSelectedPossessable(Indexes.Next);
+		}
+
+		if (Input.GetButtonDown("RB2")) {
+			//cycle backwards through possessables
+			UpdateSelectedPossessable(Indexes.Previous);
+		}
+
+		//Invisibility detector
+		if (Input.GetButtonDown("YButton2")) {
+			gameObject.transform.Find("JesterInvisibilityDetector").gameObject.SetActive(true);
 		}
 	}
 
@@ -81,8 +121,21 @@ public class JesterController : JesterMover{
 
 	//When doctor near jester => healthDecreasing = false;
 	void OnTriggerEnter(Collider other){
-		
+		if (other.CompareTag("Movable")) {
+			possessables.Add(other);
+			UpdateSelectedPossessable(Indexes.Last);
+		}
 	}	
+
+	void OnTriggerExit (Collider other) {
+		if (other.CompareTag("Movable")) {
+			other.gameObject.GetComponent<IPossessable>().UnGlow();
+			possessables.Remove(other);
+			if (other == selectedPossessable) {
+				UpdateSelectedPossessable(Indexes.First);
+			}
+		}
+	}
 		
 	//Check if the skill can be activated
 	void StunSkill(){
@@ -117,7 +170,46 @@ public class JesterController : JesterMover{
 		canMove = false;	
 	}
 
+	void UpdateSelectedPossessable (Indexes index) {
+		if (possessables.Count == 0) {
+			selectedPossessable = null;
+		} else {
+			switch (index) {
+				case Indexes.First:
+					selectedPossessable = possessables[0];
+					break;
+				case Indexes.Last:
+					selectedPossessable = possessables[possessables.Count - 1];
+					break;
+				case Indexes.Previous:
+					int currentlySelectedIndex = possessables.FindIndex(x => selectedPossessable == x);
+					if (currentlySelectedIndex > 0) {
+						selectedPossessable = possessables[currentlySelectedIndex - 1];
+					} else {
+						selectedPossessable = possessables[possessables.Count - 1];
+					}
+					break;
+				case Indexes.Next:
+					currentlySelectedIndex = possessables.FindIndex(x => selectedPossessable == x);
+					if (currentlySelectedIndex < possessables.Count - 1) {
+						selectedPossessable = possessables[currentlySelectedIndex + 1];
+					} else {
+						selectedPossessable = possessables[0];
+					}
+					break;
+				default:
+					break;		
+			}
+		}
+
+	}
 
 
+}
 
+enum Indexes {
+	Previous,
+	Next,
+	First,
+	Last
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoctorMover : MonoBehaviour {
 
 	public Camera cam;
-	public float playerNumber = 1;
+	public string playerNumber = "1";
 
 	//Input Names
 	//LeftStick to move
