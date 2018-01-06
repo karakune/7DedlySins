@@ -23,7 +23,7 @@ public class JesterMover : MonoBehaviour {
 	//Movement speed
 	public float speed;
 	//Define if the player can move or not
-	protected bool canMove;
+	public bool canMove;
 
 	//angle de la camera
 	public float cameraAngle = 60;

@@ -37,20 +37,20 @@ public class DoctorController : DoctorMover {
 	protected override void FixedUpdate(){
 		base.FixedUpdate ();
 		//Activate skill
-		if (Input.GetButtonDown (B) && jesterVisible) {
+		if (canMove){
 			Heal ();
 		}
+
 	}
 
 	void Heal(){
 		//If jester is seen => heal
-		RaycastHit hit;
-		if (Physics.Raycast (transform.position, (jester.transform.position-transform.position), out hit, healingRange)) {
-			jesterController.health = jesterController.maxHealth;
+		if (Input.GetButtonDown (B) && jesterVisible) {
+			RaycastHit hit;
+			if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange)) {
+				jesterController.health = jesterController.maxHealth;
+			}
 		}
-
-			
-
 	}
 
 	void OnTriggerEnter(Collider other){

@@ -26,7 +26,7 @@ public class DoctorMover : MonoBehaviour {
 	//Jump speed
 	public float jumpVelocity;
 	//Define if the player can move or not
-	protected bool canMove;
+	public bool canMove;
 
 	//Pour ne pas permettre double saut
 	private bool jump;
