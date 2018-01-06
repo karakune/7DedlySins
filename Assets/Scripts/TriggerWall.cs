@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Classe exécutant un bouton qui doit trigger la descente ou la montée d'un mur
+ */
 public class TriggerWall : MovementVerticalAnimation {
 
     public GameObject affectedWall;
@@ -12,8 +15,7 @@ public class TriggerWall : MovementVerticalAnimation {
         if(other.gameObject.tag == "Player")
         {
             InvokeRepeating("MoveTowardsLow", 0f, 0.05f);
-            // TODO to finish to trigger animation of the wall
-            //affectedWall.GetComponent<MoveWallGroup>().
+            affectedWall.GetComponent<MoveWallGroup>().triggerMove = true;
         }
     }
 
@@ -24,7 +26,7 @@ public class TriggerWall : MovementVerticalAnimation {
             if (!isForever)
             {
                 InvokeRepeating("MoveTowardsHigh", 0f, 0.05f);
-                // TODO to finish to trigger animation of the wall
+                affectedWall.GetComponent<MoveWallGroup>().triggerMove = true;
             }
         }
     }

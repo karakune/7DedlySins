@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Classe servant seulement à faire l'animation d'un mouvement vertical
+ * ex : descente et montée des murs ou d'un bouton
+ */
 public abstract class MovementVerticalAnimation: MonoBehaviour {
 
     public float positionLow;

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Classe gérant quand la descente ou la montée d'un mur se produit
+ */
 public class MoveWallGroup : MovementVerticalAnimation
 {
 
@@ -42,7 +45,8 @@ public class MoveWallGroup : MovementVerticalAnimation
             ChooseDirection();
             this.triggerMove = !this.triggerMove;
             this.triggerOther = false;
-            wallPair.GetComponent<MoveWallGroup>().triggerOther = true;
+            if(wallPair != null)
+                wallPair.GetComponent<MoveWallGroup>().triggerOther = true;
        }
     }
 }
