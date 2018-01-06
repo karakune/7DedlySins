@@ -48,6 +48,7 @@ public class DoctorMover : MonoBehaviour {
 		//Rotate Camera
 		cam.transform.eulerAngles = new Vector3 (yRotation,xRotation , 0);
 
+		//Jump with A button
 		if (Input.GetButtonDown ("AButton1") && jump) 
 		{
 			rb.velocity = Vector3.up * jumpVelocity;
@@ -55,12 +56,14 @@ public class DoctorMover : MonoBehaviour {
 		
 	}	
 
+	//Repermettre le joueur de sauter quand il touche le sol
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "ground" && jump == false) {
 			jump = true;
 		}
 	}
 
+	//Ne plus permettre le joueur de sauter quand il est dans les airs
 	void OnCollisionExit(Collision other){
 		if (other.gameObject.tag == "ground" && jump == true) {
 			jump = false;

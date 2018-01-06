@@ -20,6 +20,7 @@ public class JesterMover : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
+		//Move
 		transform.Translate (Input.GetAxis(x)*speed,0,Input.GetAxis(z)*speed);
 		
 	}
