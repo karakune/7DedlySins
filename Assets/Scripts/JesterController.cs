@@ -87,7 +87,9 @@ public class JesterController : JesterMover{
 	protected override void FixedUpdate(){
 		base.FixedUpdate ();
 		if (canMove) {
-			StunSkill ();
+			if (canStun && Input.GetButtonDown (B)) {
+				StunSkill ();
+			}
 		}
 
 	}
@@ -97,7 +99,7 @@ public class JesterController : JesterMover{
 		RaycastHit hit;
 		healthDecreasing = true;
 		if (Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,maxDistance)){				
-			if (hit.collider.tag == "Player") {
+			if (hit.collider.tag == "Doctor") {
 				healthDecreasing = false;
 			}
 		} 
@@ -141,8 +143,8 @@ public class JesterController : JesterMover{
 	void StunSkill(){
 		RaycastHit hit;
 		//Change this with monster pos
-		if (canStun && Input.GetButtonDown(B) && Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,stunRange) ){				
-			if (hit.collider.tag == "Player") {
+		if(Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,stunRange) ){				
+			if (hit.collider.tag == "Doctor") {
 				canStun = false;
 				//Freeze target
 				StartCoroutine (Freeze());

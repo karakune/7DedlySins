@@ -10,10 +10,10 @@ public class JesterMover : MonoBehaviour {
 
 	//Input Names
 	//LeftStick to move
-	private string xMove;
-	private string zMove;
+	protected string xMove;
+	protected string zMove;
 	//RightStick to control camera
-	private string xRotate;
+	protected string xRotate;
 	//Buttons
 	protected string A;
 	protected string B;
