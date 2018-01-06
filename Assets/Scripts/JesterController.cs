@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class JesterController : JesterMover{
 
-	public GameObject Doctor;
+	public GameObject monster;
+	public GameObject doctor;
 	//Actual health and max health
 	public float health;
 	public float maxHealth;
@@ -98,7 +100,7 @@ public class JesterController : JesterMover{
 		//Check if doctor is near jester
 		RaycastHit hit;
 		healthDecreasing = true;
-		if (Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,maxDistance)){				
+		if (Physics.Raycast(transform.position,(doctor.transform.position - transform.position),out hit,maxDistance)){				
 			if (hit.collider.tag == "Doctor") {
 				healthDecreasing = false;
 			}
@@ -143,8 +145,8 @@ public class JesterController : JesterMover{
 	void StunSkill(){
 		RaycastHit hit;
 		//Change this with monster pos
-		if(Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,stunRange) ){				
-			if (hit.collider.tag == "Doctor") {
+		if(Physics.Raycast(transform.position,(monster.transform.position - transform.position),out hit,stunRange) ){				
+			if (hit.collider.tag == "Monster") {
 				canStun = false;
 				//Freeze target
 				StartCoroutine (Freeze());
@@ -156,9 +158,9 @@ public class JesterController : JesterMover{
 
 	//The stun target cant move for the stun duration
 	IEnumerator Freeze(){
-		Doctor.GetComponent<DoctorController> ().canMove = false;
+		monster.GetComponent<NavMeshAgent> ().SetDestination (monster.transform.position);
 		yield return  new WaitForSeconds (stunDuration);
-		Doctor.GetComponent<DoctorController> ().canMove = true;
+		monster.GetComponent<NavMeshAgent> ().SetDestination (doctor.transform.position);
 	}
 
 	//The jester can't stun for the cooldown duration
