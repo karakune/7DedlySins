@@ -96,10 +96,11 @@ public class DoctorController : DoctorMover {
 		yield return new WaitForSeconds (healingCd);
 		canHeal = true;
 	}
-		
-	void Die(){
-		canMove = false;
-	
+
+	void Die()
+    {
+        Debug.Log("You died!");
+        canMove = false;
 	}
 
 	protected override void OnCollisionEnter(Collision other){

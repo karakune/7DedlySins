@@ -168,8 +168,10 @@ public class JesterController : JesterMover{
 	}
 
 
-	void Die(){
-		canMove = false;	
+	void Die()
+    {
+        Debug.Log("You died!");
+        canMove = false;	
 	}
 
 	void UpdateSelectedPossessable (Indexes index) {
