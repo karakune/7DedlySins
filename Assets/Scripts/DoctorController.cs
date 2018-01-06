@@ -18,7 +18,11 @@ public class DoctorController : DoctorMover {
 	//True if jester is seen by the doctor
 	private bool jesterVisible;
 	//True => the doctor can use his healing skill. After that, the skill is deactivated for the cooldown duration (healingCd)
-	private bool canHeal;
+	public bool canHeal;
+	//True => The doctor is near a movable object
+	public bool canMoveObject;
+	//The movable object
+	private GameObject movableObject;
 
 
 	protected override void Start () {
@@ -32,6 +36,8 @@ public class DoctorController : DoctorMover {
 		canHeal = true;
 		//healing range is equal to the radius of the sphere collider attached to the doctor. 0.8 is good enough
 		GetComponent<SphereCollider>().radius = healingRange;
+		//At start the doctor wont move an object
+		canMoveObject = false;
 	}
 	
 	// Update is called once per frame
@@ -44,33 +50,46 @@ public class DoctorController : DoctorMover {
 
 	protected override void FixedUpdate(){
 		base.FixedUpdate ();
-		//Activate skill
+
 		if (canMove){
-			Heal ();
+
+			//If Doctor wants to use healing skill and jester is visible and not far away
+			if (canHeal && Input.GetButtonDown (B) && jesterVisible) {
+				Heal ();
+			}
+
+			//If Doctor wants to move object and is colliding with it => the object will follow doctors pos
+			if (canMoveObject && Input.GetButtonDown (X)) {
+				MoveObject ();
+			}
+			//When button X up, Detach object from doctor
+			if (Input.GetButtonUp(X)){
+				movableObject.transform.SetParent (null);
+				movableObject.GetComponent<Rigidbody> ().isKinematic = true;
+			}
+
 		}
 
 	}
 
 	void Heal(){
 		//If jester is seen => heal
-		if (canHeal && Input.GetButtonDown (B) && jesterVisible) {
-			RaycastHit hit;
-			if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange)) {
-				jesterController.health = jesterController.maxHealth;
-				canHeal = false;
-				StartCoroutine (HealingCD ());
-			}
+		RaycastHit hit;
+		if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange)) {
+			jesterController.health = jesterController.maxHealth;
+			canHeal = false;
+			//launch skill cooldown
+			StartCoroutine (HealingCD ());
 		}
 	}
 
-	void OnTriggerEnter(Collider other){
-		//If jester is near doctor
-		jesterVisible = true;
+	//Move the object by setting kinematic false and by attaching movable object to doctor
+	void MoveObject(){
+		movableObject.GetComponent<Rigidbody> ().isKinematic = false;
+		movableObject.transform.SetParent (transform);
 	}
-	void OnTriggerExit(Collider other){
-		//If jester is far from doctor
-		jesterVisible = false;
-	}
+
+
 
 	//The docotor can heal again after the healingCd
 	IEnumerator HealingCD(){
@@ -78,12 +97,45 @@ public class DoctorController : DoctorMover {
 		canHeal = true;
 	}
 
-
-
 	void Die()
     {
         Debug.Log("You died!");
         canMove = false;
-	
+	}
+
+	protected override void OnCollisionEnter(Collision other){
+		base.OnCollisionEnter (other);
+		//If Doctor collides with movable object, store a reference of that object
+		if (other.gameObject.tag == "MovableObject") {
+			canMoveObject = true;
+			movableObject = other.gameObject;
+		}
+	}
+
+	protected override void OnCollisionExit(Collision other){
+		base.OnCollisionExit (other);
+		//If Doctor is not colliding with the object anymore, he cant move it anymore and we lose its reference
+		if (other.gameObject.tag == "MovableObject") {
+			canMoveObject = false;
+			movableObject = null;
+		}
+	}
+
+
+
+	void OnTriggerEnter(Collider other){
+		//If jester is near doctor
+		if (other.gameObject.tag == "Jester"){
+			jesterVisible = true;	
+		}
+
+
+	}
+
+	void OnTriggerExit(Collider other){
+		//If jester is far from doctor
+		if (other.gameObject.tag == "Jester"){
+			jesterVisible = false;	
+		}
 	}
 }
