@@ -57,12 +57,18 @@ public class MoveWallGroup : MovementVerticalAnimation, IPossessable
     public void Glow(Color color)
     {
         Color colorWithOpacity = new Color(color.r, color.g, color.b, 0.5f);
-        GameObject glowObject = gameObject.transform.Find("Glow").gameObject;
-        glowObject.GetComponent<Renderer>().material.color = colorWithOpacity;
-        glowObject.SetActive(true);
+        if(gameObject.transform.Find("Glow"))
+        {
+            GameObject glowObject = gameObject.transform.Find("Glow").gameObject;
+            glowObject.GetComponent<Renderer>().material.color = colorWithOpacity;
+            glowObject.SetActive(true);
+        }
     }
 
     public void UnGlow() {
-        gameObject.transform.Find("Glow").gameObject.SetActive(false);
+        if (gameObject.transform.Find("Glow"))
+        {
+            gameObject.transform.Find("Glow").gameObject.SetActive(false);
+        }
     }
 }

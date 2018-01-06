@@ -80,8 +80,10 @@ public class DoctorController : DoctorMover {
 
 
 
-	void Die(){
-		canMove = false;
+	void Die()
+    {
+        Debug.Log("You died!");
+        canMove = false;
 	
 	}
 }
