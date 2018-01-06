@@ -15,13 +15,15 @@ public class JesterMover : MonoBehaviour {
 	//RightStick to control camera
 	private string xRotate;
 	//Buttons
-	private string A;
-	private string B;
-	private string X;
-	private string Y;
+	protected string A;
+	protected string B;
+	protected string X;
+	protected string Y;
 
 	//Movement speed
 	public float speed;
+	//Define if the player can move or not
+	protected bool canMove;
 
 	//angle de la camera
 	public float cameraAngle = 60;
@@ -30,8 +32,10 @@ public class JesterMover : MonoBehaviour {
 	private float xRotation;
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
+		//Init rotation
 		xRotation = 0;
+		//Initi Input
 		xMove = "LeftStickHorizontal" + playerNumber ;
 		zMove = "LeftStickVertical"+ playerNumber;
 		xRotate = "RightStickHorizontal"+ playerNumber;
@@ -39,20 +43,24 @@ public class JesterMover : MonoBehaviour {
 		B = "BButton"+ playerNumber;
 		X = "XButton"+ playerNumber;
 		Y = "YButton"+ playerNumber;
+		//The player can move
+		canMove = true;
 
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
-		//Move
-		transform.Translate (Input.GetAxis(xMove)*speed,0,Input.GetAxis(zMove)*speed);
+	protected virtual void FixedUpdate () {
+		if (canMove) {
+			//Move
+			transform.Translate (Input.GetAxis(xMove)*speed,0,Input.GetAxis(zMove)*speed);
 
-		//Incrementer/Decrementer la rotation 
-		xRotation += Input.GetAxis (xRotate);
-		//Rotate Body
-		transform.eulerAngles = new Vector3 (0, xRotation, 0);
-		//Rotate Camera
-		cam.transform.eulerAngles = new Vector3 (cameraAngle,xRotation ,0);
+			//Incrementer/Decrementer la rotation 
+			xRotation += Input.GetAxis (xRotate);
+			//Rotate Body
+			transform.eulerAngles = new Vector3 (0, xRotation, 0);
+			//Rotate Camera
+			cam.transform.eulerAngles = new Vector3 (cameraAngle,xRotation ,0);
+		}
 		
 	}
 }
