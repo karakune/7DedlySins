@@ -10,11 +10,15 @@ public class DoctorController : DoctorMover {
 	public float maxHealth;
 	//Range of healing ability
 	public float healingRange;
+	//healing skill cooldown
+	public float healingCd;
 
 	//JesterController script
 	private JesterController jesterController;
 	//True if jester is seen by the doctor
 	private bool jesterVisible;
+	//True => the doctor can use his healing skill. After that, the skill is deactivated for the cooldown duration (healingCd)
+	private bool canHeal;
 
 
 	protected override void Start () {
@@ -24,6 +28,10 @@ public class DoctorController : DoctorMover {
 		jesterController = jester.GetComponent<JesterController> ();
 		//At start jester not visible
 		jesterVisible = false;
+		//At start Doctor can use his healing skill
+		canHeal = true;
+		//healing range is equal to the radius of the sphere collider attached to the doctor. 0.8 is good enough
+		GetComponent<SphereCollider>().radius = healingRange;
 	}
 	
 	// Update is called once per frame
@@ -45,10 +53,12 @@ public class DoctorController : DoctorMover {
 
 	void Heal(){
 		//If jester is seen => heal
-		if (Input.GetButtonDown (B) && jesterVisible) {
+		if (canHeal && Input.GetButtonDown (B) && jesterVisible) {
 			RaycastHit hit;
 			if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange)) {
 				jesterController.health = jesterController.maxHealth;
+				canHeal = false;
+				StartCoroutine (HealingCD ());
 			}
 		}
 	}
@@ -62,6 +72,11 @@ public class DoctorController : DoctorMover {
 		jesterVisible = false;
 	}
 
+	//The docotor can heal again after the healingCd
+	IEnumerator HealingCD(){
+		yield return new WaitForSeconds (healingCd);
+		canHeal = true;
+	}
 
 
 

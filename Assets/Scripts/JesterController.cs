@@ -14,11 +14,15 @@ public class JesterController : JesterMover{
 	public float stunRange;
 	//stun duration
 	public float stunDuration;
+	//stun skill cooldown
+	public float stunCd;
 	//If true health start decreasing
 	public bool healthDecreasing;
 
 	//Time counter (return to zero after every 1 second)
 	private float timePassed;
+	//True => the jester can use his stun skill. After that, the skill is deactivated for the cooldown duration (stunCd)
+	public bool canStun;
 
 
 	protected override void Start () {
@@ -26,12 +30,14 @@ public class JesterController : JesterMover{
 		//Health does not decrease at start
 		healthDecreasing = false;
 		timePassed = 0;
+		//At start jester can use his stun skill
+		canStun = true;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		healingAura ();
+		HealingAura ();
 
 		if (health == 0) {
 			Die ();
@@ -46,7 +52,7 @@ public class JesterController : JesterMover{
 
 	}
 
-	void healingAura(){
+	void HealingAura(){
 		//Check if doctor is near jester
 		RaycastHit hit;
 		healthDecreasing = true;
@@ -78,23 +84,33 @@ public class JesterController : JesterMover{
 		
 	}	
 		
-
+	//Check if the skill can be activated
 	void StunSkill(){
 		RaycastHit hit;
 		//Change this with monster pos
-		if (Input.GetButtonDown(B) && Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,stunRange) ){				
+		if (canStun && Input.GetButtonDown(B) && Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,stunRange) ){				
 			if (hit.collider.tag == "Player") {
-				StartCoroutine (freeze());
+				canStun = false;
+				//Freeze target
+				StartCoroutine (Freeze());
+				//Activate stun skill cooldown
+				StartCoroutine (StunCD ());
 			}
 		} 
 	}
 
-	IEnumerator freeze(){
+	//The stun target cant move for the stun duration
+	IEnumerator Freeze(){
 		Doctor.GetComponent<DoctorController> ().canMove = false;
 		yield return  new WaitForSeconds (stunDuration);
 		Doctor.GetComponent<DoctorController> ().canMove = true;
 	}
 
+	//The jester can't stun for the cooldown duration
+	IEnumerator StunCD(){
+		yield return new WaitForSeconds (stunCd);
+		canStun = true;
+	}
 
 
 	void Die(){
