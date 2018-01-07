@@ -29,7 +29,7 @@ public class DoctorMover : MonoBehaviour {
 	public bool canMove;
 
 	//Pour ne pas permettre double saut
-	private bool jump;
+	public bool jump;
 
 	//Rotation horizontale
 	private float xRotation;
@@ -79,6 +79,7 @@ public class DoctorMover : MonoBehaviour {
 			//Jump with A button
 			if (Input.GetButtonDown (A) && jump) 
 			{
+				jump = false;
 				rb.velocity = Vector3.up * jumpVelocity;
 			}
 		}
@@ -87,15 +88,11 @@ public class DoctorMover : MonoBehaviour {
 
 	//Repermettre le joueur de sauter quand il touche le sol
 	protected virtual void OnCollisionEnter(Collision other){
-		if (other.gameObject.tag == "Ground" && jump == false) {
+		print (other.gameObject.tag);
+		if (other.gameObject.tag == "Ground") {
 			jump = true;
 		}
 	}
 
-	//Ne plus permettre le joueur de sauter quand il est dans les airs
-	protected virtual void OnCollisionExit(Collision other){
-		if (other.gameObject.tag == "Ground" && jump == true) {
-			jump = false;
-		}
-	}
+
 }

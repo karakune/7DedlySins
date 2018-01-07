@@ -75,8 +75,7 @@ public class DoctorController : DoctorMover {
 	void Heal(){
 		//If jester is seen => heal
 		RaycastHit hit;
-		if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange)) {
-			print (hit.transform.tag);
+		if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange*2)) {
 			jesterController.health = jesterController.maxHealth;
 			canHeal = false;
 			//launch skill cooldown
@@ -111,10 +110,14 @@ public class DoctorController : DoctorMover {
 			canMoveObject = true;
 			movableObject = other.gameObject;
 		}
+
+		if (other.gameObject.tag == "Monster") {
+			Die ();
+			health = 0;
+		}
 	}
 
-	protected override void OnCollisionExit(Collision other){
-		base.OnCollisionExit (other);
+	void OnCollisionExit(Collision other){
 		//If Doctor is not colliding with the object anymore, he cant move it anymore and we lose its reference
 		if (other.gameObject.tag == "MovableObject") {
 			canMoveObject = false;
