@@ -2616,10 +2616,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 20346884416189198}
   playerNumber: 1
-  speed: 0.05
-  jumpVelocity: 5
+  speed: 0
+  jumpVelocity: 0
   canMove: 0
   jester: {fileID: 0}
+
   health: 5
   maxHealth: 5
   healingRange: 5

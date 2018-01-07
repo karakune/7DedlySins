@@ -4,13 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Movable
-  - Jester
-  - Ground
-  - MovableObject
-  - Doctor
   - Monster
-  - HealingRange
   layers:
   - Default
   - TransparentFX
