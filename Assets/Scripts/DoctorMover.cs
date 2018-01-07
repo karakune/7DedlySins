@@ -39,6 +39,7 @@ public class DoctorMover : MonoBehaviour {
 
 	//Rigidbody du doctor
 	protected Rigidbody rb;
+    public Animator anim;
 	// Use this for initialization
 	protected virtual void Start () {
 		//Init des rotation a 0
@@ -69,6 +70,8 @@ public class DoctorMover : MonoBehaviour {
 		if (canMove) {
 			//Move
 			transform.Translate (Input.GetAxis(xMove)*speed,0,Input.GetAxis(zMove)*speed);
+            anim.SetFloat("Walk", Mathf.Abs(Input.GetAxis(xMove) * speed) + Mathf.Abs(Input.GetAxis(zMove) * speed));
+
 			//Incrementer/Decrementer la rotation 
 			xRotation += Input.GetAxis (xRotate);
 			yRotation -= Input.GetAxis (yRotate);
@@ -82,7 +85,8 @@ public class DoctorMover : MonoBehaviour {
 			{
 				jump = false;
 				rb.velocity = Vector3.up * jumpVelocity;
-			}
+                anim.SetTrigger("Jump");
+            }
 		}
 		
 	}	
@@ -92,7 +96,7 @@ public class DoctorMover : MonoBehaviour {
 		print (other.gameObject.tag);
 		if (other.gameObject.tag == "Ground") {
 			jump = true;
-		}
+        }
 	}
 
 
