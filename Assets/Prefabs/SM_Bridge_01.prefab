@@ -21,6 +21,9 @@ GameObject:
   - component: {fileID: 4647312950450004}
   - component: {fileID: 33063180643685112}
   - component: {fileID: 23710988001269598}
+  - component: {fileID: 65147240757387716}
+  - component: {fileID: 65018351861656578}
+  - component: {fileID: 65973263797038240}
   m_Layer: 0
   m_Name: SM_Bridge_01
   m_TagString: Untagged
@@ -34,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1550243024794584}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1.2000003, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 7.8600006, y: -0.05, z: 44.050003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,7 +53,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -66,7 +68,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -82,3 +83,39 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1550243024794584}
   m_Mesh: {fileID: 4300000, guid: f79b57c112383bb40a3c1dd0b84291f0, type: 3}
+--- !u!65 &65018351861656578
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550243024794584}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1597967, y: 0.36, z: 2.7388246}
+  m_Center: {x: 0, y: -1.11, z: -0.5913708}
+--- !u!65 &65147240757387716
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550243024794584}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1597967, y: 1.92, z: 1.25}
+  m_Center: {x: 0, y: -0.0000019073486, z: -0.5913708}
+--- !u!65 &65973263797038240
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550243024794584}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1597967, y: 0.36, z: 2.7388246}
+  m_Center: {x: 0, y: 1.14, z: -0.5913708}
