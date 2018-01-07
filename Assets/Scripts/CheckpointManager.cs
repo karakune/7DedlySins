@@ -16,8 +16,10 @@ public class CheckpointManager : MonoBehaviour {
     public GameObject Enemy;
 
     public static int currentCheckPoint = 0;
+	public static int monsterCheckpoint = 0;
 	public static bool gameOver = false;
-	public int index;
+	private bool spawned = false;
+
 
     public void UnLoadLastCheckPoint()
     {
@@ -32,11 +34,13 @@ public class CheckpointManager : MonoBehaviour {
 
 	public void LoadCheckPoint()
     {
-		Debug.Log ("Loading");
+		Enemy.SetActive (false);
+		monsterCheckpoint = 0;
+		if (currentCheckPoint == 2) {
+			monsterCheckpoint = 2;
+		}
 		Doctor.transform.position = DoctorCheckpoints[currentCheckPoint];
-		Debug.Log ("Loading1");
 		Jester.transform.position = JesterCheckpoints[currentCheckPoint];
-		Debug.Log ("Loading2");
 		Jester.GetComponent<JesterController> ().Start ();
 		Doctor.GetComponent<DoctorController> ().Start ();
 		gameOver = false;
@@ -69,19 +73,48 @@ public class CheckpointManager : MonoBehaviour {
 	void Checkpoint0(){
 		DoctorCheckpoints.Add (new Vector3 (-6,0,-6));
 		JesterCheckpoints.Add (new Vector3 (-6,1.8f,-4));
-		//EnemyCheckpoints.Add (new Vector3 ());
+		monsterCheckpoint = 0;
 	}
 
 	void Checkpoint1(){
+		
 		DoctorCheckpoints.Add (new Vector3 (10,0,4.5f));
 		JesterCheckpoints.Add (new Vector3 (10,1.8f,6.5f));
-		//EnemyCheckpoints.Add (new Vector3 ());
+		if (monsterCheckpoint < 1) {
+			Enemy.SetActive (false);
+			spawned = false;
+		} else if (!spawned && monsterCheckpoint == 1 ) {
+			spawned = true;
+			Enemy.SetActive (true);
+			Enemy.transform.position = new Vector3(10,1,5);
+		}
+		else if (!spawned && monsterCheckpoint == 2 ) {
+			spawned = true;
+			Enemy.SetActive (true);
+			Enemy.transform.position = new Vector3(50,1,6);
+		}
+
 	}
 
 	void Checkpoint2(){
 		DoctorCheckpoints.Add (new Vector3 (49,0,4.5f));
 		JesterCheckpoints.Add (new Vector3 (49,1.8f,6.5f));
+		if (monsterCheckpoint < 3) {
+			Enemy.SetActive (false);
+			spawned = false;
+		}else if (!spawned && monsterCheckpoint == 3 ) {
+			spawned = true;
+			Enemy.SetActive (true);
+			Enemy.transform.position = new Vector3(50,1,5);
+		}
+		/*else if (!spawned && monsterCheckpoint == 4 ) {
+			spawned = true;
+			Enemy.SetActive (true);
+			Enemy.transform.position = new Vector3(50,1,6);
+		}*/
 	}
+
+
 
 
 
