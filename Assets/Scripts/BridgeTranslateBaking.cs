@@ -17,7 +17,6 @@ public class BridgeTranslateBaking : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other){
-		print (other.tag);
 		if (other.tag == "Possessable") {
 			obstacle.enabled = false;
 		}

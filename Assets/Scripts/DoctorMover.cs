@@ -40,7 +40,7 @@ public class DoctorMover : MonoBehaviour {
 	//Rigidbody du doctor
 	protected Rigidbody rb;
 	// Use this for initialization
-	protected virtual void Start () {
+	public virtual void Start () {
 		//Init des rotation a 0
 		xRotation = 0;
 		yRotation = 0;

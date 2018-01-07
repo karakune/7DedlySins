@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Bridge2RotationBaking : MonoBehaviour {
+public class Bridge2RotationBaking	 : MonoBehaviour {
 
 	private NavMeshObstacle obstacle;
 	private float rotation;

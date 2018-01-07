@@ -34,7 +34,7 @@ public class JesterMover : MonoBehaviour {
 	private float xRotation;
 
 	// Use this for initialization
-	protected virtual void Start () {
+	public virtual void Start () {
 		//Init rotation
 		xRotation = 0;
 		//Initi Input

@@ -19,7 +19,6 @@ public class BridgeRotationBaking : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other){
-		Debug.Log (other.tag);	
 		if (other.tag == "Possessable") {
 			rotation += 90;
 			transform.eulerAngles = new Vector3 (-90,rotation , 0);
