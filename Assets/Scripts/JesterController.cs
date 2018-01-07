@@ -66,7 +66,6 @@ public class JesterController : JesterMover{
 		}
 
 		if (Input.GetButtonDown(X)) {
-			print ("X");
 			if (selectedPossessable != null) {
 				selectedPossessable.gameObject.GetComponent<IPossessable>().Possess();
 			}
@@ -102,7 +101,7 @@ public class JesterController : JesterMover{
 		//Check if doctor is near jester
 		RaycastHit hit;
 		healthDecreasing = true;
-		if (Physics.Raycast(transform.position,(doctor.transform.position - transform.position),out hit,maxDistance)){				
+		if (Physics.Raycast(transform.position,(doctor.transform.position - transform.position),out hit,maxDistance)){	
 			if (hit.collider.tag == "Doctor") {
 				healthDecreasing = false;
 			}

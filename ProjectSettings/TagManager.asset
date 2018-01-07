@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monster
+  - Movable
+  - Ground
+  - Jester
+  - Doctor
+  - Possessable
   layers:
   - Default
   - TransparentFX
