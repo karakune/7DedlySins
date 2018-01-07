@@ -10,6 +10,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: SM_Floor_Frame_Bouton_01
+    4300002: Object029
   externalObjects:
   - first:
       type: UnityEngine:Material
