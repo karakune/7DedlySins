@@ -40,7 +40,7 @@ public class DoctorMover : MonoBehaviour {
 	//Rigidbody du doctor
 	protected Rigidbody rb;
 	// Use this for initialization
-	protected virtual void Start () {
+	public virtual void Start () {
 		//Init des rotation a 0
 		xRotation = 0;
 		yRotation = 0;
@@ -89,7 +89,6 @@ public class DoctorMover : MonoBehaviour {
 
 	//Repermettre le joueur de sauter quand il touche le sol
 	protected virtual void OnCollisionEnter(Collision other){
-		print (other.gameObject.tag);
 		if (other.gameObject.tag == "Ground") {
 			jump = true;
 		}
