@@ -126,16 +126,12 @@ public class JesterController : JesterMover{
 
 	//When doctor near jester => healthDecreasing = false;
 	void OnTriggerEnter(Collider other){
-<<<<<<< HEAD
 		if (other.CompareTag("Movable") || other.CompareTag("Possessable")) {
-=======
-		if (other.CompareTag("Movable")) {
 			foreach (Collider possessable in possessables) {
 				if (other == possessable) {
 					return;
 				}
 			}
->>>>>>> master
 			possessables.Add(other);
 			UpdateSelectedPossessable(Indexes.Last);
 		}
