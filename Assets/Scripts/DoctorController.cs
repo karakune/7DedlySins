@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DoctorController : DoctorMover {
 
@@ -12,6 +13,8 @@ public class DoctorController : DoctorMover {
 	public float healingRange;
 	//healing skill cooldown
 	public float healingCd;
+	public Image healFillClockImage;
+	public int frameCounter = 0;
 
 	//JesterController script
 	private JesterController jesterController;
@@ -25,9 +28,14 @@ public class DoctorController : DoctorMover {
 	private GameObject movableObject;
 
 
-	protected override void Start () {
+	public override void Start () {
 		//Call of parent.Start()
 		base.Start ();
+
+		maxHealth = 100;
+		health = maxHealth;
+		healingRange = 5;
+		healingCd = 5;
 		//Get JesterController script
 		jesterController = jester.GetComponent<JesterController>();
 		//At start jester not visible
@@ -45,6 +53,7 @@ public class DoctorController : DoctorMover {
 
 		if (health == 0) {
 			Die ();
+
 		}
 	}
 
@@ -75,6 +84,14 @@ public class DoctorController : DoctorMover {
 
 		}
 
+		if (!canHeal) {
+			frameCounter++;
+			if (frameCounter == 60) {
+				frameCounter = 0;
+				UpdateCooldown();
+			}
+		}
+
 	}
 
 	void Heal(){
@@ -96,9 +113,14 @@ public class DoctorController : DoctorMover {
 	}
 
 
+	public void UpdateCooldown()
+	{
+		healFillClockImage.fillAmount += 0.25f;
+	}
 
 	//The docotor can heal again after the healingCd
 	IEnumerator HealingCD(){
+		healFillClockImage.fillAmount = 0f;
 		yield return new WaitForSeconds (healingCd);
 		canHeal = true;
 	}
@@ -107,6 +129,7 @@ public class DoctorController : DoctorMover {
     {
         Debug.Log("You died!");
         canMove = false;
+		CheckpointManager.gameOver = true;
 	}
 
 	protected override void OnCollisionEnter(Collision other){
@@ -121,6 +144,21 @@ public class DoctorController : DoctorMover {
 			Die ();
 			health = 0;
 		}
+
+		if (other.gameObject.name == "Ground_Wood_Checkpoint1"){
+			CheckpointManager.currentCheckPoint++;
+		}	
+
+		if (other.gameObject.name == "Ground_Wood_Checkpoint2"){
+			CheckpointManager.currentCheckPoint++;
+		}	
+
+		if (other.gameObject.name == "Ground_Wood_Checkpoint3"){
+			CheckpointManager.currentCheckPoint++;
+		}	
+
+
+			
 	}
 
 	void OnCollisionExit(Collision other){

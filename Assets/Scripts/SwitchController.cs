@@ -16,6 +16,7 @@ public class SwitchController : MonoBehaviour, IPossessable {
 	void Update () {
 		
 	}
+    
     public void Glow(Color color)
     {
         Color colorWithOpacity = new Color(color.r, color.g, color.b, 0.5f);
