@@ -65,24 +65,25 @@ public class JesterController : JesterMover{
 			selectedPossessable.gameObject.GetComponent<IPossessable>().Glow(Color.yellow);
 		}
 
-		if (Input.GetButtonDown("XButton2")) {
+		if (Input.GetButtonDown(X)) {
+			print ("X");
 			if (selectedPossessable != null) {
 				selectedPossessable.gameObject.GetComponent<IPossessable>().Possess();
 			}
 		}
 
-		if (Input.GetButtonDown("LB2")) {
+		if (Input.GetButtonDown(Lb)) {
 			//cycle forwards through possessables
 			UpdateSelectedPossessable(Indexes.Next);
 		}
 
-		if (Input.GetButtonDown("RB2")) {
+		if (Input.GetButtonDown(Rb)) {
 			//cycle backwards through possessables
 			UpdateSelectedPossessable(Indexes.Previous);
 		}
 
 		//Invisibility detector
-		if (Input.GetButtonDown("YButton2")) {
+		if (Input.GetButtonDown(Y)) {
 			gameObject.transform.Find("JesterInvisibilityDetector").gameObject.SetActive(true);
 		}
 	}
