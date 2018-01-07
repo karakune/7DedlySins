@@ -89,6 +89,7 @@ public class DoctorMover : MonoBehaviour {
 
 	//Repermettre le joueur de sauter quand il touche le sol
 	protected virtual void OnCollisionEnter(Collision other){
+		// print (other.gameObject.tag);
 		if (other.gameObject.tag == "Ground") {
 			jump = true;
 		}

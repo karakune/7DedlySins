@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DoctorController : DoctorMover {
 
@@ -12,6 +13,8 @@ public class DoctorController : DoctorMover {
 	public float healingRange;
 	//healing skill cooldown
 	public float healingCd;
+	public Image healFillClockImage;
+	public int frameCounter = 0;
 
 	//JesterController script
 	private JesterController jesterController;
@@ -76,6 +79,14 @@ public class DoctorController : DoctorMover {
 
 		}
 
+		if (!canHeal) {
+			frameCounter++;
+			if (frameCounter == 60) {
+				frameCounter = 0;
+				UpdateCooldown();
+			}
+		}
+
 	}
 
 	void Heal(){
@@ -97,9 +108,14 @@ public class DoctorController : DoctorMover {
 	}
 
 
+	public void UpdateCooldown()
+	{
+		healFillClockImage.fillAmount += 0.25f;
+	}
 
 	//The docotor can heal again after the healingCd
 	IEnumerator HealingCD(){
+		healFillClockImage.fillAmount = 0f;
 		yield return new WaitForSeconds (healingCd);
 		canHeal = true;
 	}

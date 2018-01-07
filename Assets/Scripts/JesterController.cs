@@ -31,8 +31,10 @@ public class JesterController : JesterMover{
 	public List<Collider> possessables;
 	public Collider selectedPossessable;
 
-	public Image fillClockImage;
+	public Image healthFillClockImage;
+	public Image spellFillClockImage;
 
+	public int frameCounter = 0;
 
 	public override void Start () {
 		
@@ -91,19 +93,28 @@ public class JesterController : JesterMover{
 			UpdateSelectedPossessable(Indexes.Previous);
 		}
 
-		//Invisibility detector
-		if (Input.GetButtonDown(Y)) {
-			gameObject.transform.Find("JesterInvisibilityDetector").gameObject.SetActive(true);
-		}
+		// //Invisibility detector
+		// if (Input.GetButtonDown(Y)) {
+		// 	gameObject.transform.Find("JesterInvisibilityDetector").gameObject.SetActive(true);
+		// }
 	}
 
 	protected override void FixedUpdate(){
 		base.FixedUpdate ();
 		if (canMove) {
 			if (canStun && Input.GetButtonDown (B)) {
+				Debug.Log("I stun!");
 				StunSkill ();
 			}
 		}
+		if (!canStun) {
+			frameCounter++;
+			if (frameCounter == 60) {
+				frameCounter = 0;
+				UpdateCooldown();
+			}
+		}
+
 
 	}
 
@@ -126,7 +137,12 @@ public class JesterController : JesterMover{
 
 	public void UpdateUIHealth()
 	{
-		fillClockImage.fillAmount = health / maxHealth;
+		healthFillClockImage.fillAmount = health / maxHealth;
+	}
+
+	public void UpdateCooldown()
+	{
+		spellFillClockImage.fillAmount += 0.25f;
 	}
 
 
@@ -187,6 +203,7 @@ public class JesterController : JesterMover{
 
 	//The jester can't stun for the cooldown duration
 	IEnumerator StunCD(){
+		spellFillClockImage.fillAmount = 0;
 		yield return new WaitForSeconds (stunCd);
 		canStun = true;
 	}
