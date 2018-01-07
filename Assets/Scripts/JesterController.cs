@@ -36,9 +36,16 @@ public class JesterController : JesterMover{
 
 	public int frameCounter = 0;
 
-	protected override void Start () {
+	public override void Start () {
 		
 		base.Start ();
+
+		maxHealth = 100;
+		health = 5;
+		maxDistance = 0;
+		stunRange = 5;
+		stunCd = 5;
+		stunDuration = 5;
 		//Health does not decrease at start
 		healthDecreasing = false;
 		timePassed = 0;
@@ -206,6 +213,7 @@ public class JesterController : JesterMover{
     {
         Debug.Log("You died!");
         canMove = false;	
+		CheckpointManager.gameOver = true;
 	}
 
 	void UpdateSelectedPossessable (Indexes index) {

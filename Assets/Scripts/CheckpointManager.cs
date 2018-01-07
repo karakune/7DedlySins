@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckpointManager : MonoBehaviour {
 
@@ -8,38 +9,81 @@ public class CheckpointManager : MonoBehaviour {
     private List<Vector3> DoctorCheckpoints;
     private List<Vector3> JesterCheckpoints;
 
+
+
     public GameObject Doctor;
     public GameObject Jester;
     public GameObject Enemy;
 
-    public int currentCheckPoint = 0;
+    public static int currentCheckPoint = 0;
+	public static bool gameOver = false;
+	public int index;
 
     public void UnLoadLastCheckPoint()
     {
-        Doctor.transform.position = DoctorCheckpoints[this.currentCheckPoint];
-        Jester.transform.position = JesterCheckpoints[this.currentCheckPoint];
-        Enemy.transform.position = EnemyCheckpoints[this.currentCheckPoint];
+		Enemy.transform.position = EnemyCheckpoints[currentCheckPoint];
     }
 
     public void ChangeCheckPoint()
     {
-        this.currentCheckPoint++;
+        currentCheckPoint++;
         LoadCheckPoint();
     }
 
-    private void LoadCheckPoint()
+	public void LoadCheckPoint()
     {
-        DoctorCheckpoints[this.currentCheckPoint] = Doctor.transform.position;
-        JesterCheckpoints[this.currentCheckPoint] = Jester.transform.position;
+		Debug.Log ("Loading");
+		Doctor.transform.position = DoctorCheckpoints[currentCheckPoint];
+		Debug.Log ("Loading1");
+		Jester.transform.position = JesterCheckpoints[currentCheckPoint];
+		Debug.Log ("Loading2");
+		Jester.GetComponent<JesterController> ().Start ();
+		Doctor.GetComponent<DoctorController> ().Start ();
+		gameOver = false;
     }
 
     public void ResetCheckPoints()
     {
-        this.currentCheckPoint = 0;
+        currentCheckPoint = 0;
     }
 
     private void Start()
     {
-        LoadCheckPoint();
+		DoctorCheckpoints = new List<Vector3> ();
+		JesterCheckpoints= new List<Vector3> ();
+		EnemyCheckpoints= new List<Vector3> ();
+		Checkpoint0 ();
     }
+
+	void Update(){
+		if (currentCheckPoint == 1) {
+			Checkpoint1 ();
+		} else if (currentCheckPoint == 2) {
+			Checkpoint2 ();
+		}
+		if (gameOver) {
+			LoadCheckPoint ();
+		}
+	}
+
+	void Checkpoint0(){
+		DoctorCheckpoints.Add (new Vector3 (-6,0,-6));
+		JesterCheckpoints.Add (new Vector3 (-6,1.8f,-4));
+		//EnemyCheckpoints.Add (new Vector3 ());
+	}
+
+	void Checkpoint1(){
+		DoctorCheckpoints.Add (new Vector3 (10,0,4.5f));
+		JesterCheckpoints.Add (new Vector3 (10,1.8f,6.5f));
+		//EnemyCheckpoints.Add (new Vector3 ());
+	}
+
+	void Checkpoint2(){
+		DoctorCheckpoints.Add (new Vector3 (49,0,4.5f));
+		JesterCheckpoints.Add (new Vector3 (49,1.8f,6.5f));
+	}
+
+
+
+
 }
