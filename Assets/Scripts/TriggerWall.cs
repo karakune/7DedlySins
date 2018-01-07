@@ -12,7 +12,7 @@ public class TriggerWall : MovementVerticalAnimation {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Doctor")
         {
             InvokeRepeating("MoveTowardsLow", 0f, 0.05f);
             affectedWall.GetComponent<MoveWallGroup>().triggerMove = true;
@@ -21,7 +21,7 @@ public class TriggerWall : MovementVerticalAnimation {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == "Doctor")
         {
             if (!isForever)
             {
