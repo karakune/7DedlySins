@@ -8879,6 +8879,42 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4923909705888716, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.53267515
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923909705888716, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.07034045
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923909705888716, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.83613265
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923909705888716, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.11041513
+      objectReference: {fileID: 0}
+    - target: {fileID: 20490181916451006, guid: 1787541c4c6dba94b8c7cec60ce15fb3,
+        type: 2}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 20490181916451006, guid: 1787541c4c6dba94b8c7cec60ce15fb3,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20490181916451006, guid: 1787541c4c6dba94b8c7cec60ce15fb3,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20490181916451006, guid: 1787541c4c6dba94b8c7cec60ce15fb3,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
   m_IsPrefabParent: 0
@@ -12459,8 +12495,7 @@ Prefab:
       propertyPath: doctor
       value: 
       objectReference: {fileID: 1210792163}
-    - target: {fileID: 54424206633730578, guid: 1912cd2cc3b7fdb4aa071aec11cc4d2e,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 116
       objectReference: {fileID: 0}
@@ -12474,7 +12509,8 @@ Prefab:
       propertyPath: fillClockImage
       value: 
       objectReference: {fileID: 1450054850}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 1912cd2cc3b7fdb4aa071aec11cc4d2e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1733790427 stripped

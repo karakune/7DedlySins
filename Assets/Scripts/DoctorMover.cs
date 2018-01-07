@@ -23,6 +23,7 @@ public class DoctorMover : MonoBehaviour {
 
 	//Movement speed
 	public float speed;
+	public float rotSpeed;
 	//Jump speed
 	public float jumpVelocity;
 	//Define if the player can move or not
@@ -72,9 +73,9 @@ public class DoctorMover : MonoBehaviour {
 			xRotation += Input.GetAxis (xRotate);
 			yRotation -= Input.GetAxis (yRotate);
 			//Rotate Body
-			transform.eulerAngles = new Vector3 (0, xRotation, 0);
+			transform.eulerAngles = new Vector3 (0, xRotation * rotSpeed, 0);
 			//Rotate Camera
-			cam.transform.eulerAngles = new Vector3 (yRotation,xRotation , 0);
+			cam.transform.eulerAngles = new Vector3 (yRotation * rotSpeed ,xRotation * rotSpeed, 0);
 
 			//Jump with A button
 			if (Input.GetButtonDown (A) && jump) 
