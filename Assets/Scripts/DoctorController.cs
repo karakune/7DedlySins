@@ -16,7 +16,7 @@ public class DoctorController : DoctorMover {
 	//JesterController script
 	private JesterController jesterController;
 	//True if jester is seen by the doctor
-	private bool jesterVisible;
+	public static bool jesterVisible=false;
 	//True => the doctor can use his healing skill. After that, the skill is deactivated for the cooldown duration (healingCd)
 	public bool canHeal;
 	//True => The doctor is near a movable object
@@ -35,7 +35,7 @@ public class DoctorController : DoctorMover {
 		//At start Doctor can use his healing skill
 		canHeal = true;
 		//healing range is equal to the radius of the sphere collider attached to the doctor. 0.8 is good enough
-		GetComponent<SphereCollider>().radius = healingRange;
+		GetComponentInChildren<SphereCollider>().radius = healingRange;
 		//At start the doctor wont move an object
 		canMoveObject = false;
 	}
@@ -75,7 +75,9 @@ public class DoctorController : DoctorMover {
 	void Heal(){
 		//If jester is seen => heal
 		RaycastHit hit;
+		print ("Healing");
 		if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange)) {
+			print (hit.transform.tag);
 			jesterController.health = jesterController.maxHealth;
 			canHeal = false;
 			//launch skill cooldown
@@ -123,19 +125,5 @@ public class DoctorController : DoctorMover {
 
 
 
-	void OnTriggerEnter(Collider other){
-		//If jester is near doctor
-		if (other.gameObject.tag == "Jester"){
-			jesterVisible = true;	
-		}
 
-
-	}
-
-	void OnTriggerExit(Collider other){
-		//If jester is far from doctor
-		if (other.gameObject.tag == "Jester"){
-			jesterVisible = false;	
-		}
-	}
 }

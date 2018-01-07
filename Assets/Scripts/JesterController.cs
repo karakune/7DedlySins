@@ -32,6 +32,7 @@ public class JesterController : JesterMover{
 
 
 	protected override void Start () {
+		
 		base.Start ();
 		//Health does not decrease at start
 		healthDecreasing = false;
@@ -126,6 +127,11 @@ public class JesterController : JesterMover{
 	//When doctor near jester => healthDecreasing = false;
 	void OnTriggerEnter(Collider other){
 		if (other.CompareTag("Movable")) {
+			foreach (Collider possessable in possessables) {
+				if (other == possessable) {
+					return;
+				}
+			}
 			possessables.Add(other);
 			UpdateSelectedPossessable(Indexes.Last);
 		}
