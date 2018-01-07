@@ -7,6 +7,7 @@ public class SwitchController : MonoBehaviour, IPossessable {
 	public bool wasPossessed = false;
 	public GameObject pairedObject;
 
+
     // Use this for initialization
     void Start () {
 		
@@ -30,9 +31,12 @@ public class SwitchController : MonoBehaviour, IPossessable {
 
     public void Possess()
     {
+		// AudioClip activate = Resources.Load ("SFX_Jester_RingBell") as AudioClip;
+        gameObject.GetComponent<AudioSource>().Play();
         if (!wasPossessed) {
 			wasPossessed = true;
 			pairedObject.GetComponent<MoveWallGroup>().triggerMove = true;
+            // AudioSource.PlayClipAtPoint (activate, transform.position);
 		}
     }
 

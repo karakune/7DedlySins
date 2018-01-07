@@ -46,13 +46,16 @@ public class MoveWallGroup : MovementVerticalAnimation, IPossessable
 
     public void Possess()
     {
-		AudioClip open = Resources.Load ("SFX_Door_Open") as AudioClip;
-		AudioClip close = Resources.Load ("SFX_Door_close") as AudioClip;
+		// AudioClip open = Resources.Load ("SFX_Door_Open") as AudioClip;
+		// AudioClip close = Resources.Load ("SFX_Door_close") as AudioClip;
         if (isInMotion == false) {
 			if (this.triggerMove) {
-				AudioSource.PlayClipAtPoint (open, transform.position);
+				// AudioSource.PlayClipAtPoint (open, transform.position);
+                // Debug.Log("Playing open sound");
+                // openSound.Play();
 			} else {
-				AudioSource.PlayClipAtPoint (close, transform.position);
+				// AudioSource.PlayClipAtPoint (close, transform.position);
+                
 			}
             this.triggerMove = !this.triggerMove;
         }

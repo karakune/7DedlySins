@@ -7,6 +7,7 @@ public class MovingBridgeController : MovementHorizontalAnimation, IPossessable
 
     private bool triggerMove = false;
     private GameObject jester;
+    public AudioSource slideSound;
 
     // Use this for initialization
     void Start()
@@ -21,9 +22,6 @@ public class MovingBridgeController : MovementHorizontalAnimation, IPossessable
 
     public void Possess()
     {
-        AudioClip open = Resources.Load("SFX_Door_Open") as AudioClip;
-        AudioClip close = Resources.Load("SFX_Door_close") as AudioClip;
-
         if (jester.transform.position.x < transform.position.x && transform.position.x < rightMostPosition)
         {
             ChooseDirection(HDirections.Right);
@@ -31,11 +29,11 @@ public class MovingBridgeController : MovementHorizontalAnimation, IPossessable
             {
                 if (this.triggerMove)
                 {
-                    AudioSource.PlayClipAtPoint(open, transform.position);
+                    slideSound.Play();
                 }
                 else
                 {
-                    AudioSource.PlayClipAtPoint(close, transform.position);
+                    slideSound.Play();
                 }
                 this.triggerMove = !this.triggerMove;
             }
@@ -47,11 +45,11 @@ public class MovingBridgeController : MovementHorizontalAnimation, IPossessable
             {
                 if (this.triggerMove)
                 {
-                    AudioSource.PlayClipAtPoint(open, transform.position);
+                    slideSound.Play();
                 }
                 else
                 {
-                    AudioSource.PlayClipAtPoint(close, transform.position);
+                    slideSound.Play();
                 }
                 this.triggerMove = !this.triggerMove;
             }

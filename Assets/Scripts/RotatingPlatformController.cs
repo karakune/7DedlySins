@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RotatingPlatformController : MovementRotationAnimation, IPossessable {
 
+    public AudioSource slideSound;
 
     // Use this for initialization
     void Start () {
@@ -19,6 +20,7 @@ public class RotatingPlatformController : MovementRotationAnimation, IPossessabl
     {
         if (isInMotion == false) {
 			Debug.Log("was not in motion");
+                    slideSound.Play();
             Rotate(RotationDirections.Clockwise);
         }
     }

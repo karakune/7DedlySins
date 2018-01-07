@@ -10,6 +10,7 @@ TagManager:
   - Jester
   - Doctor
   - Possessable
+  - KillZone
   layers:
   - Default
   - TransparentFX

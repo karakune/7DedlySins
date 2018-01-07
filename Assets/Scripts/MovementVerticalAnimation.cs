@@ -12,16 +12,20 @@ public abstract class MovementVerticalAnimation: MonoBehaviour {
     public float positionHigh;
     public float incrementMovement;
     public bool isInMotion = false;
+    public AudioSource openSound;
+    public AudioSource closeSound;
 
     protected void ChooseDirection()
     {
         Vector3 position = gameObject.transform.position;
         if (position.y > positionLow)
         {
+            closeSound.Play();
             InvokeRepeating("MoveTowardsLow", 0f, 0.05f);
         }
         else
         {
+            openSound.Play();
             InvokeRepeating("MoveTowardsHigh", 0f, 0.05f);
         }
     }

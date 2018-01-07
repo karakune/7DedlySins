@@ -132,6 +132,11 @@ public class DoctorController : DoctorMover {
 			Die ();
 			health = 0;
 		}
+
+		if (other.gameObject.tag == "KillZone") {
+			Die();
+			health = 0;
+		}
 	}
 
 	void OnCollisionExit(Collision other){
