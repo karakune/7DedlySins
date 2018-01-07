@@ -41,7 +41,7 @@ public class JesterController : JesterMover{
 		base.Start ();
 
 		maxHealth = 100;
-		health = 5;
+		health = 100;
 		maxDistance = 0;
 		stunRange = 5;
 		stunCd = 5;
