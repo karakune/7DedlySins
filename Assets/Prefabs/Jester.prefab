@@ -84,8 +84,8 @@ Camera:
   m_GameObject: {fileID: 1939053633716230}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -164,7 +164,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &114099242292575738
 MonoBehaviour:
@@ -195,6 +195,7 @@ MonoBehaviour:
   canPossess: 0
   possessables: []
   selectedPossessable: {fileID: 0}
+  fillClockImage: {fileID: 0}
 --- !u!124 &124785186252254740
 Behaviour:
   m_ObjectHideFlags: 1
@@ -223,7 +224,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.6
+  m_Height: 2.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
