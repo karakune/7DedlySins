@@ -1269,6 +1269,11 @@ Prefab:
       propertyPath: doctor
       value: 
       objectReference: {fileID: 1686104936}
+    - target: {fileID: 114317869716330152, guid: 1912cd2cc3b7fdb4aa071aec11cc4d2e,
+        type: 2}
+      propertyPath: maxDistance
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 81635771895877792, guid: 1912cd2cc3b7fdb4aa071aec11cc4d2e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1912cd2cc3b7fdb4aa071aec11cc4d2e, type: 2}
@@ -3313,6 +3318,31 @@ Prefab:
         type: 2}
       propertyPath: jumpVelocity
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155044307230606, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.5326752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155044307230606, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.070340455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155044307230606, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.83613276
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155044307230606, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.110415146
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635872239543850, guid: 1787541c4c6dba94b8c7cec60ce15fb3,
+        type: 2}
+      propertyPath: healingRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413926018697382, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}
+      propertyPath: m_TagString
+      value: Doctor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1787541c4c6dba94b8c7cec60ce15fb3, type: 2}

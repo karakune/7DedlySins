@@ -75,8 +75,7 @@ public class DoctorController : DoctorMover {
 	void Heal(){
 		//If jester is seen => heal
 		RaycastHit hit;
-		if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange)) {
-			print (hit.transform.tag);
+		if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange*2)) {
 			jesterController.health = jesterController.maxHealth;
 			canHeal = false;
 			//launch skill cooldown
@@ -110,6 +109,11 @@ public class DoctorController : DoctorMover {
 		if (other.gameObject.tag == "MovableObject") {
 			canMoveObject = true;
 			movableObject = other.gameObject;
+		}
+
+		if (other.gameObject.tag == "Monster") {
+			Die ();
+			health = 0;
 		}
 	}
 
