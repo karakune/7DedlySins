@@ -14,7 +14,7 @@ public class MonsterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		agent.SetDestination (target.transform.position);
 		
 	}
 }

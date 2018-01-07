@@ -10,6 +10,7 @@ TagManager:
   - MovableObject
   - Doctor
   - Monster
+  - HealingRange
   layers:
   - Default
   - TransparentFX
