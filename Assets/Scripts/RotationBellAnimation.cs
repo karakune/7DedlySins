@@ -19,7 +19,7 @@ public class RotationBellAnimation : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Doctor")
         {
             startTime = Time.time;
             animate();

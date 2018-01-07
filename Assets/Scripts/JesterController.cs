@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class JesterController : JesterMover{
 
-	public GameObject Doctor;
+	public GameObject monster;
+	public GameObject doctor;
 	//Actual health and max health
 	public float health;
 	public float maxHealth;
@@ -30,6 +32,7 @@ public class JesterController : JesterMover{
 
 
 	protected override void Start () {
+		
 		base.Start ();
 		//Health does not decrease at start
 		healthDecreasing = false;
@@ -55,31 +58,32 @@ public class JesterController : JesterMover{
 		}
 
 		foreach(Collider possessable in possessables) {
-			possessable.gameObject.GetComponent<MoveWallGroup>().Glow(Color.blue);
+			possessable.gameObject.GetComponent<IPossessable>().Glow(Color.blue);
 		}
 
 		if (selectedPossessable != null) {
-			selectedPossessable.gameObject.GetComponent<MoveWallGroup>().Glow(Color.yellow);
+			selectedPossessable.gameObject.GetComponent<IPossessable>().Glow(Color.yellow);
 		}
 
-		if (Input.GetButtonDown("XButton2")) {
+		if (Input.GetButtonDown(X)) {
+			print ("X");
 			if (selectedPossessable != null) {
-				selectedPossessable.gameObject.GetComponent<MoveWallGroup>().Possess();
+				selectedPossessable.gameObject.GetComponent<IPossessable>().Possess();
 			}
 		}
 
-		if (Input.GetButtonDown("LB2")) {
+		if (Input.GetButtonDown(Lb)) {
 			//cycle forwards through possessables
 			UpdateSelectedPossessable(Indexes.Next);
 		}
 
-		if (Input.GetButtonDown("RB2")) {
+		if (Input.GetButtonDown(Rb)) {
 			//cycle backwards through possessables
 			UpdateSelectedPossessable(Indexes.Previous);
 		}
 
 		//Invisibility detector
-		if (Input.GetButtonDown("YButton2")) {
+		if (Input.GetButtonDown(Y)) {
 			gameObject.transform.Find("JesterInvisibilityDetector").gameObject.SetActive(true);
 		}
 	}
@@ -87,7 +91,9 @@ public class JesterController : JesterMover{
 	protected override void FixedUpdate(){
 		base.FixedUpdate ();
 		if (canMove) {
-			StunSkill ();
+			if (canStun && Input.GetButtonDown (B)) {
+				StunSkill ();
+			}
 		}
 
 	}
@@ -96,8 +102,8 @@ public class JesterController : JesterMover{
 		//Check if doctor is near jester
 		RaycastHit hit;
 		healthDecreasing = true;
-		if (Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,maxDistance)){				
-			if (hit.collider.tag == "Player") {
+		if (Physics.Raycast(transform.position,(doctor.transform.position - transform.position),out hit,maxDistance)){				
+			if (hit.collider.tag == "Doctor") {
 				healthDecreasing = false;
 			}
 		} 
@@ -121,14 +127,19 @@ public class JesterController : JesterMover{
 
 	//When doctor near jester => healthDecreasing = false;
 	void OnTriggerEnter(Collider other){
-		if (other.CompareTag("Movable")) {
+		if (other.CompareTag("Movable") || other.CompareTag("Possessable")) {
+			foreach (Collider possessable in possessables) {
+				if (other == possessable) {
+					return;
+				}
+			}
 			possessables.Add(other);
 			UpdateSelectedPossessable(Indexes.Last);
 		}
 	}	
 
 	void OnTriggerExit (Collider other) {
-		if (other.CompareTag("Movable")) {
+		if (other.CompareTag("Movable") || other.CompareTag("Possessable")) {
 			other.gameObject.GetComponent<IPossessable>().UnGlow();
 			possessables.Remove(other);
 			if (other == selectedPossessable) {
@@ -141,8 +152,8 @@ public class JesterController : JesterMover{
 	void StunSkill(){
 		RaycastHit hit;
 		//Change this with monster pos
-		if (canStun && Input.GetButtonDown(B) && Physics.Raycast(transform.position,(Doctor.transform.position - transform.position),out hit,stunRange) ){				
-			if (hit.collider.tag == "Player") {
+		if(Physics.Raycast(transform.position,(monster.transform.position - transform.position),out hit,stunRange) ){				
+			if (hit.collider.tag == "Monster") {
 				canStun = false;
 				//Freeze target
 				StartCoroutine (Freeze());
@@ -154,9 +165,9 @@ public class JesterController : JesterMover{
 
 	//The stun target cant move for the stun duration
 	IEnumerator Freeze(){
-		Doctor.GetComponent<DoctorController> ().canMove = false;
+		monster.GetComponent<NavMeshAgent> ().SetDestination (monster.transform.position);
 		yield return  new WaitForSeconds (stunDuration);
-		Doctor.GetComponent<DoctorController> ().canMove = true;
+		monster.GetComponent<NavMeshAgent> ().SetDestination (doctor.transform.position);
 	}
 
 	//The jester can't stun for the cooldown duration

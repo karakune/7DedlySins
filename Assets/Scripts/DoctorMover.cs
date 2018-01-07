@@ -9,11 +9,11 @@ public class DoctorMover : MonoBehaviour {
 
 	//Input Names
 	//LeftStick to move
-	private string xMove;
-	private string zMove;
+	protected string xMove;
+	protected string zMove;
 	//RightStick to control camera
-	private string xRotate;
-	private string yRotate;
+	protected string xRotate;
+	protected string yRotate;
 	//Buttons
 	protected string A;
 	protected string B;
@@ -86,14 +86,14 @@ public class DoctorMover : MonoBehaviour {
 	}	
 
 	//Repermettre le joueur de sauter quand il touche le sol
-	void OnCollisionEnter(Collision other){
+	protected virtual void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "Ground" && jump == false) {
 			jump = true;
 		}
 	}
 
 	//Ne plus permettre le joueur de sauter quand il est dans les airs
-	void OnCollisionExit(Collision other){
+	protected virtual void OnCollisionExit(Collision other){
 		if (other.gameObject.tag == "Ground" && jump == true) {
 			jump = false;
 		}

@@ -10,15 +10,17 @@ public class JesterMover : MonoBehaviour {
 
 	//Input Names
 	//LeftStick to move
-	private string xMove;
-	private string zMove;
+	protected string xMove;
+	protected string zMove;
 	//RightStick to control camera
-	private string xRotate;
+	protected string xRotate;
 	//Buttons
 	protected string A;
 	protected string B;
 	protected string X;
 	protected string Y;
+	protected string Rb;
+	protected string Lb;
 
 	//Movement speed
 	public float speed;
@@ -43,6 +45,8 @@ public class JesterMover : MonoBehaviour {
 		B = "BButton"+ playerNumber;
 		X = "XButton"+ playerNumber;
 		Y = "YButton"+ playerNumber;
+		Rb = "RB"+ playerNumber;
+		Lb = "LB"+ playerNumber;
 		//The player can move
 		canMove = true;
 
