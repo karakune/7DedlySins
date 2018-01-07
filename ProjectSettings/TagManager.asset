@@ -7,6 +7,9 @@ TagManager:
   - Movable
   - Jester
   - Ground
+  - MovableObject
+  - Doctor
+  - Monster
   layers:
   - Default
   - TransparentFX
