@@ -117,8 +117,7 @@ public class DoctorController : DoctorMover {
 		}
 	}
 
-	protected override void OnCollisionExit(Collision other){
-		base.OnCollisionExit (other);
+	void OnCollisionExit(Collision other){
 		//If Doctor is not colliding with the object anymore, he cant move it anymore and we lose its reference
 		if (other.gameObject.tag == "MovableObject") {
 			canMoveObject = false;
