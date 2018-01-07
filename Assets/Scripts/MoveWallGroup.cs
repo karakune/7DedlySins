@@ -11,9 +11,6 @@ public class MoveWallGroup : MovementVerticalAnimation, IPossessable
 
     void Start()
     {
-        positionHigh = 1.25f;
-        positionLow = -1.25f;
-        incrementMovement = 0.25f;
 
         if (this.triggerMove)
         {

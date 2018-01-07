@@ -29,7 +29,7 @@ public class DoctorController : DoctorMover {
 		//Call of parent.Start()
 		base.Start ();
 		//Get JesterController script
-		jesterController = jester.GetComponent<JesterController> ();
+		jesterController = jester.GetComponent<JesterController>();
 		//At start jester not visible
 		jesterVisible = false;
 		//At start Doctor can use his healing skill
@@ -77,9 +77,10 @@ public class DoctorController : DoctorMover {
 		RaycastHit hit;
 		if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange*2)) {
 			jesterController.health = jesterController.maxHealth;
+			jesterController.UpdateUIHealth();
 			canHeal = false;
 			//launch skill cooldown
-			StartCoroutine (HealingCD ());
+			StartCoroutine (HealingCD());
 		}
 	}
 

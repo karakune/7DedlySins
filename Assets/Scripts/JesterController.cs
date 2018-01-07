@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class JesterController : JesterMover{
 
@@ -29,6 +30,8 @@ public class JesterController : JesterMover{
 	public bool canPossess = false;
 	public List<Collider> possessables;
 	public Collider selectedPossessable;
+
+	public Image fillClockImage;
 
 
 	protected override void Start () {
@@ -114,11 +117,17 @@ public class JesterController : JesterMover{
 		}
 	}
 
+	public void UpdateUIHealth()
+	{
+		fillClockImage.fillAmount = health / maxHealth;
+	}
+
 
 	void DecreaseHealth(){
 		//decrease 1 health every one second
 		if (timePassed > 1 && health>0) {
 			health--;
+			UpdateUIHealth ();
 			timePassed = 0;
 		}
 		timePassed += Time.deltaTime;

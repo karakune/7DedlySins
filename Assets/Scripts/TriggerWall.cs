@@ -9,14 +9,18 @@ public class TriggerWall : MovementVerticalAnimation {
 
     public GameObject affectedWall;
     public bool isForever;
+	private bool isTriggered = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Doctor")
-        {
-            InvokeRepeating("MoveTowardsLow", 0f, 0.05f);
-            affectedWall.GetComponent<MoveWallGroup>().triggerMove = true;
-        }
+		if (!isTriggered) {
+			if(other.gameObject.tag == "Doctor")
+			{
+				InvokeRepeating("MoveTowardsLow", 0f, 0.05f);
+				affectedWall.GetComponent<MoveWallGroup>().triggerMove = true;
+				isTriggered = true;
+			}
+		}
     }
 
     private void OnTriggerExit(Collider other)
@@ -27,6 +31,7 @@ public class TriggerWall : MovementVerticalAnimation {
             {
                 InvokeRepeating("MoveTowardsHigh", 0f, 0.05f);
                 affectedWall.GetComponent<MoveWallGroup>().triggerMove = true;
+				isTriggered = false;
             }
         }
     }

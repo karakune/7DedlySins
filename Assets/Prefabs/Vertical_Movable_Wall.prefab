@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af30e3472877e5f4b9eba28018ee9909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionLow: -1.2
+  positionLow: -1.15
   positionHigh: 1.25
   incrementMovement: 0.25
   isInMotion: 0
