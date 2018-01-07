@@ -55,16 +55,16 @@ public class JesterController : JesterMover{
 		}
 
 		foreach(Collider possessable in possessables) {
-			possessable.gameObject.GetComponent<MoveWallGroup>().Glow(Color.blue);
+			possessable.gameObject.GetComponent<IPossessable>().Glow(Color.blue);
 		}
 
 		if (selectedPossessable != null) {
-			selectedPossessable.gameObject.GetComponent<MoveWallGroup>().Glow(Color.yellow);
+			selectedPossessable.gameObject.GetComponent<IPossessable>().Glow(Color.yellow);
 		}
 
 		if (Input.GetButtonDown("XButton2")) {
 			if (selectedPossessable != null) {
-				selectedPossessable.gameObject.GetComponent<MoveWallGroup>().Possess();
+				selectedPossessable.gameObject.GetComponent<IPossessable>().Possess();
 			}
 		}
 
@@ -121,14 +121,14 @@ public class JesterController : JesterMover{
 
 	//When doctor near jester => healthDecreasing = false;
 	void OnTriggerEnter(Collider other){
-		if (other.CompareTag("Movable")) {
+		if (other.CompareTag("Movable") || other.CompareTag("Possessable")) {
 			possessables.Add(other);
 			UpdateSelectedPossessable(Indexes.Last);
 		}
 	}	
 
 	void OnTriggerExit (Collider other) {
-		if (other.CompareTag("Movable")) {
+		if (other.CompareTag("Movable") || other.CompareTag("Possessable")) {
 			other.gameObject.GetComponent<IPossessable>().UnGlow();
 			possessables.Remove(other);
 			if (other == selectedPossessable) {

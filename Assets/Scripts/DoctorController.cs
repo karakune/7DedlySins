@@ -31,7 +31,6 @@ public class DoctorController : DoctorMover {
 		//At start Doctor can use his healing skill
 		canHeal = true;
 		//healing range is equal to the radius of the sphere collider attached to the doctor. 0.8 is good enough
-		GetComponent<SphereCollider>().radius = healingRange;
 	}
 	
 	// Update is called once per frame

@@ -2581,18 +2581,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1877121667854128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 579c0cbeaf4974846be7ff0923f15f93, type: 3}
+  m_Script: {fileID: 11500000, guid: ac74aa5ab6c05f243a569f1585ca5946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 20604678271508138}
+  cam: {fileID: 0}
   playerNumber: 1
-  speed: 0.05
-  jumpVelocity: 5
+  speed: 0
+  jumpVelocity: 0
   canMove: 0
   jester: {fileID: 0}
-  health: 1
+  health: 0
   maxHealth: 0
-  healingRange: 10
+  healingRange: 0
+  healingCd: 0
 --- !u!124 &124355931538156756
 Behaviour:
   m_ObjectHideFlags: 1
