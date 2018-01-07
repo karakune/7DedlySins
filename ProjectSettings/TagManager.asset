@@ -7,7 +7,14 @@ TagManager:
   - Movable
   - Jester
   - Ground
+<<<<<<< HEAD
   - Possessable
+=======
+  - MovableObject
+  - Doctor
+  - Monster
+  - HealingRange
+>>>>>>> master
   layers:
   - Default
   - TransparentFX
