@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114748237514062488}
   - component: {fileID: 135368345072843332}
   - component: {fileID: 114443279226149526}
+  - component: {fileID: 111786080901961328}
   m_Layer: 0
   m_Name: Bell
   m_TagString: Possessable
@@ -86,6 +87,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -101,6 +103,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -118,11 +121,12 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3d4702bd3c1d4ed419c99137a55c22e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,6 +137,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -179,6 +184,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8, z: 1}
   m_Center: {x: 0, y: 0, z: -0.5}
+--- !u!111 &111786080901961328
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700148678574834}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 32acd22b1faf18847a496365306f68df, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114443279226149526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,10 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4ac7c3a6576724c8a053ede5d2c949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationBack: 90
-  rotationFront: 80
-  speed: 0.002
-  startTime: 0
 --- !u!135 &135368345072843332
 SphereCollider:
   m_ObjectHideFlags: 1
