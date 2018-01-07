@@ -64,18 +64,23 @@ public class DoctorController : DoctorMover {
 
 			//If Doctor wants to use healing skill and jester is visible and not far away
 			if (canHeal && Input.GetButtonDown (B) && jesterVisible) {
-				Heal ();
+                anim.SetTrigger("Heal");
+                Heal ();
 			}
 
 			//If Doctor wants to move object and is colliding with it => the object will follow doctors pos
 			if (canMoveObject && Input.GetButtonDown (X)) {
+                if (!anim.GetBool("Push"))
+                    anim.SetBool("Push", true);
 				MoveObject ();
 			}
 			//When button X up, Detach object from doctor
 			if (movableObject!=null && Input.GetButtonUp(X)){
-				movableObject.transform.SetParent (null);
+                movableObject.transform.SetParent (null);
 				movableObject.GetComponent<Rigidbody> ().isKinematic = true;
-			}
+                if (anim.GetBool("Push"))
+                    anim.SetBool("Push", false);
+            }
 
 		}
 

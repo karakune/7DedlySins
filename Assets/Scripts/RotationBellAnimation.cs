@@ -4,31 +4,22 @@ using UnityEngine;
 
 public class RotationBellAnimation : MonoBehaviour {
 
-    public float rotationBack;
-    public float rotationFront;
-    public float speed;
-    public float startTime;
-
     protected void animate()
     {
-        Quaternion rotation = gameObject.transform.rotation;
-        Quaternion to = new Quaternion(rotation.x + rotationFront, rotation.y, rotation.z, 1);
-        
-        transform.rotation = Quaternion.Lerp(rotation, to, (Time.time - startTime) * speed);
+        GetComponent<Animation>().Play("bellring");
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Doctor")
+        if(other.gameObject.tag == "Jester")
         {
-            startTime = Time.time;
+            CancelInvoke();
             animate();
-
         }
     }
 
     private void Start()
     {
-        animate();   
+        GetComponent<Animation>().wrapMode = WrapMode.Once;
     }
 }
