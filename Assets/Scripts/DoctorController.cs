@@ -63,7 +63,7 @@ public class DoctorController : DoctorMover {
 				MoveObject ();
 			}
 			//When button X up, Detach object from doctor
-			if (Input.GetButtonUp(X)){
+			if (movableObject!=null && Input.GetButtonUp(X)){
 				movableObject.transform.SetParent (null);
 				movableObject.GetComponent<Rigidbody> ().isKinematic = true;
 			}
@@ -75,7 +75,6 @@ public class DoctorController : DoctorMover {
 	void Heal(){
 		//If jester is seen => heal
 		RaycastHit hit;
-		print ("Healing");
 		if (Physics.Raycast (transform.position, (jester.transform.position - transform.position), out hit, healingRange)) {
 			print (hit.transform.tag);
 			jesterController.health = jesterController.maxHealth;
