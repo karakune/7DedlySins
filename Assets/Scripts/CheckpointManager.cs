@@ -57,6 +57,8 @@ public class CheckpointManager : MonoBehaviour {
 		JesterCheckpoints= new List<Vector3> ();
 		EnemyCheckpoints= new List<Vector3> ();
 		Checkpoint0 ();
+		Doctor.transform.position = DoctorCheckpoints[currentCheckPoint];
+		Jester.transform.position = JesterCheckpoints[currentCheckPoint];
     }
 
 	void Update(){
@@ -86,7 +88,7 @@ public class CheckpointManager : MonoBehaviour {
 		} else if (!spawned && monsterCheckpoint == 1 ) {
 			spawned = true;
 			Enemy.SetActive (true);
-			Enemy.transform.position = new Vector3(10,1,5);
+			Enemy.transform.position = new Vector3(15,1,5);
 		}
 		else if (!spawned && monsterCheckpoint == 2 ) {
 			spawned = true;

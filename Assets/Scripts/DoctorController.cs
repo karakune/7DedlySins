@@ -157,7 +157,7 @@ public class DoctorController : DoctorMover {
 			CheckpointManager.currentCheckPoint++;
 		}	
 
-		if (other.gameObject.name == "Ground_Wood_CheckpointMonster1"){
+		if (other.gameObject.name == "Ground_CheckpointMonster1"){
 			CheckpointManager.monsterCheckpoint++;
 		}
 		if (other.gameObject.name == "Ground_Wood_CheckpointMonster2"){
