@@ -33,6 +33,9 @@ public class SwitchController : MonoBehaviour, IPossessable {
         if (!wasPossessed) {
 			wasPossessed = true;
 			pairedObject.GetComponent<MoveWallGroup>().triggerMove = true;
+            if (gameObject.GetComponent<RotationBellAnimation>() != null) {
+                gameObject.GetComponent<RotationBellAnimation>().Animate();
+            }
 		}
     }
 

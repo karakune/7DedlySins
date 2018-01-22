@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class RotationBellAnimation : MonoBehaviour {
 
-    protected void animate()
+    public void Animate()
     {
         GetComponent<Animation>().Play("bellring");
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Jester")
-        {
-            CancelInvoke();
-            animate();
-        }
     }
 
     private void Start()

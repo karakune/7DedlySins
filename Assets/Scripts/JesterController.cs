@@ -40,12 +40,12 @@ public class JesterController : JesterMover{
 		
 		base.Start ();
 
-		maxHealth = 100;
-		health = 100;
-		maxDistance = 0;
-		stunRange = 5;
-		stunCd = 5;
-		stunDuration = 5;
+		// maxHealth = 100;
+		// health = 100;
+		// maxDistance = 0;
+		// stunRange = 5;
+		// stunCd = 5;
+		// stunDuration = 5;
 		//Health does not decrease at start
 		healthDecreasing = false;
 		timePassed = 0;
@@ -122,11 +122,9 @@ public class JesterController : JesterMover{
 		//Check if doctor is near jester
 		RaycastHit hit;
 		healthDecreasing = true;
-			Debug.DrawRay(transform.position,(doctor.transform.position - transform.position), Color.green);
-		if (Physics.Raycast(transform.position,(doctor.transform.position - transform.position),out hit,maxDistance)){	
-			Debug.Log("Raycast hit!");
+		Debug.DrawRay(transform.position,(doctor.transform.position - transform.position), Color.green);
+		if (Physics.Raycast(transform.position,(doctor.transform.position - transform.position), out hit, maxDistance)){	
 			if (hit.collider.tag == "Doctor" || hit.collider.tag == "HealRange") {
-				Debug.Log("stopping health decrease!");
 				healthDecreasing = false;
 			}
 		} 
@@ -159,7 +157,6 @@ public class JesterController : JesterMover{
 		timePassed += Time.deltaTime;
 	}
 
-	//When doctor near jester => healthDecreasing = false;
 	void OnTriggerEnter(Collider other){
 		if (other.CompareTag("Movable") || other.CompareTag("Possessable")) {
 			foreach (Collider possessable in possessables) {
@@ -186,7 +183,7 @@ public class JesterController : JesterMover{
 	void StunSkill(){
 		RaycastHit hit;
 		//Change this with monster pos
-		if(Physics.Raycast(transform.position,(monster.transform.position - transform.position),out hit,stunRange) ){				
+		if(Physics.Raycast(transform.position,(monster.transform.position - transform.position), out hit, stunRange) ){				
 			if (hit.collider.tag == "Monster") {
 				canStun = false;
 				//Freeze target
