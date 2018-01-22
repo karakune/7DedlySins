@@ -38,11 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -77,19 +77,17 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
+    m_PVRFiltering: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1500,6 +1498,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4949412577080470, guid: a247a9c68a14eac40ab2a62f75ec2981,
     type: 2}
   m_PrefabInternal: {fileID: 114625167}
+--- !u!114 &116711746 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114442794193705342, guid: d7a1f2698c4e70346b2bfae17d1fb063,
+    type: 2}
+  m_PrefabInternal: {fileID: 1205054225}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &118167240
 Prefab:
   m_ObjectHideFlags: 0
@@ -5472,6 +5476,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4529769253695816, guid: dc3c56228c1b3e24f80e4134e1ead03b,
     type: 2}
   m_PrefabInternal: {fileID: 326780581}
+--- !u!95 &331195496 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: 032d4851f1cea9545830ab100f5695ae,
+    type: 3}
+  m_PrefabInternal: {fileID: 379331621}
 --- !u!1001 &338775759
 Prefab:
   m_ObjectHideFlags: 0
@@ -17288,6 +17297,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4949412577080470, guid: a247a9c68a14eac40ab2a62f75ec2981,
     type: 2}
   m_PrefabInternal: {fileID: 1055232647}
+--- !u!1 &1057231322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1057231323}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1057231323
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057231322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.17284203, y: 1.0300751, z: 4.064949}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1057712827
 Prefab:
   m_ObjectHideFlags: 0
@@ -19910,30 +19947,30 @@ AudioListener:
 --- !u!114 &1210792165
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114296103030941546, guid: 1787541c4c6dba94b8c7cec60ce15fb3,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1210792163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bba767b602f9424ebe6de1ff2ca4f95, type: 3}
+  m_Script: {fileID: 11500000, guid: ac74aa5ab6c05f243a569f1585ca5946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 533146163}
   playerNumber: 1
-  speed: 0
-  rotSpeed: 0
-  jumpVelocity: 0
+  speed: 0.06
+  rotSpeed: 2
+  minRotation: -30
+  maxRotation: 20
+  jumpVelocity: 5
   canMove: 0
   jump: 0
-  anim: {fileID: 9500000, guid: 032d4851f1cea9545830ab100f5695ae, type: 3}
+  anim: {fileID: 331195496}
   jester: {fileID: 1733790427}
-  health: 0
-  maxHealth: 0
-  healingRange: 0
-  healingCd: 0
-  healFillClockImage: {fileID: 114442794193705342, guid: d7a1f2698c4e70346b2bfae17d1fb063,
-    type: 2}
+  health: 100
+  maxHealth: 100
+  healingRange: 1
+  healingCd: 5
+  healFillClockImage: {fileID: 116711746}
   frameCounter: 0
   canHeal: 0
   canMoveObject: 0
@@ -19988,7 +20025,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1210792163}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 82.7, y: 0.52, z: 10.15}
+  m_LocalPosition: {x: -4.4, y: 0.52, z: -7.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1494369781}
@@ -23554,6 +23591,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4197362907849156, guid: 2ecc3d0949abbf547a6614a4906d8e64,
     type: 2}
   m_PrefabInternal: {fileID: 1442084015}
+--- !u!114 &1445479504 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114442794193705342, guid: d7a1f2698c4e70346b2bfae17d1fb063,
+    type: 2}
+  m_PrefabInternal: {fileID: 1765133837}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1446031887
 Prefab:
   m_ObjectHideFlags: 0
@@ -24327,7 +24370,7 @@ GameObject:
   - component: {fileID: 1494369782}
   m_Layer: 0
   m_Name: HealingRange
-  m_TagString: Doctor
+  m_TagString: HealRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27871,6 +27914,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4197362907849156, guid: 2ecc3d0949abbf547a6614a4906d8e64,
     type: 2}
   m_PrefabInternal: {fileID: 1712559192}
+--- !u!114 &1717793256 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114442794193705342, guid: d7a1f2698c4e70346b2bfae17d1fb063,
+    type: 2}
+  m_PrefabInternal: {fileID: 1437140191}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1717917927
 Prefab:
   m_ObjectHideFlags: 0
@@ -28524,37 +28573,34 @@ SphereCollider:
 --- !u!114 &1733790429
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114099242292575738, guid: 1912cd2cc3b7fdb4aa071aec11cc4d2e,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1733790427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20ae65562217afe48b75152b9c6e6c62, type: 3}
+  m_Script: {fileID: 11500000, guid: d19623aab7caf5e449372c261a86caea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 701466288}
   playerNumber: 2
-  speed: 0
+  speed: 0.07
   canMove: 0
   cameraAngle: 60
-  monster: {fileID: 1398006131}
+  monster: {fileID: 1290610394999722, guid: b0edb7f405f07fd478c0fa2a720aa046, type: 2}
   doctor: {fileID: 1210792163}
-  health: 0
-  maxHealth: 0
-  maxDistance: 0
-  stunRange: 0
-  stunDuration: 0
-  stunCd: 0
+  health: 100
+  maxHealth: 100
+  maxDistance: 50
+  stunRange: 5
+  stunDuration: 5
+  stunCd: 5
   healthDecreasing: 0
   canStun: 0
   canPossess: 0
   possessables: []
   selectedPossessable: {fileID: 0}
-  healthFillClockImage: {fileID: 114442794193705342, guid: d7a1f2698c4e70346b2bfae17d1fb063,
-    type: 2}
-  spellFillClockImage: {fileID: 114442794193705342, guid: d7a1f2698c4e70346b2bfae17d1fb063,
-    type: 2}
+  healthFillClockImage: {fileID: 1445479504}
+  spellFillClockImage: {fileID: 1717793256}
   frameCounter: 0
 --- !u!54 &1733790430
 Rigidbody:
@@ -28635,7 +28681,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1733790427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.96, y: 1.8, z: -5.11}
+  m_LocalPosition: {x: -0.8, y: 1.8, z: -6.8}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 94282555}

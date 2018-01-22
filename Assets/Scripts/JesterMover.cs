@@ -55,6 +55,10 @@ public class JesterMover : MonoBehaviour {
 	// Update is called once per frame
 	protected virtual void FixedUpdate () {
 		if (canMove) {
+			//cancel all external forces so the character doesn't float away
+			gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+			gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+     
 			//Move
 			transform.Translate (Input.GetAxis(xMove)*speed,0,Input.GetAxis(zMove)*speed);
 

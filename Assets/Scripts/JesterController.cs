@@ -122,8 +122,11 @@ public class JesterController : JesterMover{
 		//Check if doctor is near jester
 		RaycastHit hit;
 		healthDecreasing = true;
+			Debug.DrawRay(transform.position,(doctor.transform.position - transform.position), Color.green);
 		if (Physics.Raycast(transform.position,(doctor.transform.position - transform.position),out hit,maxDistance)){	
-			if (hit.collider.tag == "Doctor") {
+			Debug.Log("Raycast hit!");
+			if (hit.collider.tag == "Doctor" || hit.collider.tag == "HealRange") {
+				Debug.Log("stopping health decrease!");
 				healthDecreasing = false;
 			}
 		} 

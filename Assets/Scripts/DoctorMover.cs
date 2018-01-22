@@ -24,6 +24,9 @@ public class DoctorMover : MonoBehaviour {
 	//Movement speed
 	public float speed;
 	public float rotSpeed;
+	//camera's vertical limits
+	public float minRotation;
+	public float maxRotation;
 	//Jump speed
 	public float jumpVelocity;
 	//Define if the player can move or not
@@ -74,11 +77,11 @@ public class DoctorMover : MonoBehaviour {
 
 			//Incrementer/Decrementer la rotation 
 			xRotation += Input.GetAxis (xRotate);
-			yRotation -= Input.GetAxis (yRotate);
+			yRotation = Mathf.Clamp(yRotation-= Input.GetAxis (yRotate), minRotation, maxRotation);
 			//Rotate Body
 			transform.eulerAngles = new Vector3 (0, xRotation * rotSpeed, 0);
 			//Rotate Camera
-			cam.transform.eulerAngles = new Vector3 (yRotation * rotSpeed ,xRotation * rotSpeed, 0);
+			cam.transform.eulerAngles = new Vector3 (yRotation * rotSpeed, xRotation * rotSpeed, 0);
 
 			//Jump with A button
 			if (Input.GetButtonDown (A) && jump) 

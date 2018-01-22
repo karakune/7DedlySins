@@ -11,6 +11,7 @@ TagManager:
   - Doctor
   - Possessable
   - MovableObject
+  - HealRange
   layers:
   - Default
   - TransparentFX
