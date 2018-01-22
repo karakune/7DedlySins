@@ -40,12 +40,6 @@ public class JesterController : JesterMover{
 		
 		base.Start ();
 
-		// maxHealth = 100;
-		// health = 100;
-		// maxDistance = 0;
-		// stunRange = 5;
-		// stunCd = 5;
-		// stunDuration = 5;
 		//Health does not decrease at start
 		healthDecreasing = false;
 		timePassed = 0;
