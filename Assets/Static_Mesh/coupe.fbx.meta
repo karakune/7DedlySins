@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: be40a46d87537644dba59478ab6a8f71
-timeCreated: 1515353062
-licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: coupemesh
@@ -15,17 +13,20 @@ ModelImporter:
     400006: coupemesh_MeshPart1
     2300000: coupemesh_MeshPart0
     2300002: coupemesh_MeshPart1
+    2300004: coupemesh
     3300000: coupemesh_MeshPart0
     3300002: coupemesh_MeshPart1
+    3300004: coupemesh
     4300000: coupemesh_MeshPart0
     4300002: coupemesh_MeshPart1
+    4300004: coupemesh
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: blinn1
-    second: {fileID: 2100000, guid: effde959cfed7d24f92df5c442024bb7, type: 2}
+    second: {fileID: 2100000, guid: afc60392fca1067459f80e976c7b976c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -44,6 +45,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -68,11 +70,15 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
